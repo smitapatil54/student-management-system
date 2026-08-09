@@ -111,3 +111,5 @@ Jenkins can automate build and verification every time code changes.
 - Apache Maven
 - Console I/O (`Scanner`)
 - In-memory storage (`ArrayList`)
+
+Jenkins Continuous Integration Practical
