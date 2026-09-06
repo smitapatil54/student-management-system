@@ -40,8 +40,8 @@ pipeline {
                     withCredentials([
                         usernamePassword(
                             credentialsId: env.TOMCAT_CREDENTIALS_ID,
-                            usernameVariable: 'TOMCAT_USER',
-                            passwordVariable: 'TOMCAT_PASSWORD'
+                            usernameVariable: 'Smita',
+                            passwordVariable: 'smita@124'
                         )
                     ]) {
                         bat '''
