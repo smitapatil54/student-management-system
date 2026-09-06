@@ -45,7 +45,7 @@ pipeline {
                         )
                     ]) {
                         bat '''
-                            curl --fail --upload-file "target\student-management-system.war" ^
+                            curl --fail --upload-file "targets/tudent-management-system.war" ^
                             "%TOMCAT_URL%/manager/text/deploy?path=/%APP_CONTEXT%&update=true" ^
                             --user "%TOMCAT_USER%:%TOMCAT_PASSWORD%"
                         '''
