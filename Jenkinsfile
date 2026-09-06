@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         TOMCAT_URL = 'http://localhost:7080'
-        TOMCAT_CREDENTIALS_ID = 'Smita'
+        TOMCAT_CREDENTIALS_ID = 'tomcat-credential'
         APP_CONTEXT = 'student-management-system'
     }
 
