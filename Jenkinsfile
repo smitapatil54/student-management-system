@@ -3,11 +3,12 @@ pipeline {
 
     environment {
         TOMCAT_URL = 'http://localhost:7080'
-        TOMCAT_CREDENTIALS_ID = 'tomcat-credentials'
+        TOMCAT_CREDENTIALS_ID = 'Smita'
         APP_CONTEXT = 'student-management-system'
     }
 
     stages {
+
         stage('Clean Project') {
             steps {
                 echo 'Cleaning Maven project...'
@@ -29,6 +30,7 @@ pipeline {
                         echo 'WAR file not found'
                         error 'WAR file was not generated.'
                     }
+
                     echo 'WAR file found: target/student-management-system.war'
                 }
             }
@@ -40,12 +42,12 @@ pipeline {
                     withCredentials([
                         usernamePassword(
                             credentialsId: env.TOMCAT_CREDENTIALS_ID,
-                            usernameVariable: 'Smita',
-                            passwordVariable: 'smita@124'
+                            usernameVariable: 'TOMCAT_USER',
+                            passwordVariable: 'TOMCAT_PASSWORD'
                         )
                     ]) {
                         bat '''
-                            curl --fail --upload-file "targets/tudent-management-system.war" ^
+                            curl --fail --upload-file "target/student-management-system.war" ^
                             "%TOMCAT_URL%/manager/text/deploy?path=/%APP_CONTEXT%&update=true" ^
                             --user "%TOMCAT_USER%:%TOMCAT_PASSWORD%"
                         '''
@@ -59,6 +61,7 @@ pipeline {
         success {
             echo 'Build completed successfully.'
         }
+
         failure {
             echo 'Build failed. Check Console Output.'
         }
