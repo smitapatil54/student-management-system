@@ -3,11 +3,7 @@ package com.student;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Entry point for the console-based Student Management System.
- */
 public class Main {
-
     private static final Scanner scanner = new Scanner(System.in);
     private static final StudentService studentService = new StudentService();
 
@@ -33,10 +29,8 @@ public class Main {
                 }
                 default -> System.out.println("Invalid choice. Please enter a number between 1 and 5.");
             }
-
             System.out.println();
         }
-
         scanner.close();
     }
 
@@ -57,69 +51,46 @@ public class Main {
         double marks = readDouble("Enter Marks: ");
 
         Student student = new Student(studentId, name, course, marks);
-        if (studentService.addStudent(student)) {
-            System.out.println("Student added successfully.");
-        } else {
-            System.out.println("A student with this ID already exists.");
-        }
+        System.out.println(studentService.addStudent(student)
+                ? "Student added successfully."
+                : "A student with this ID already exists.");
     }
 
     private static void viewAllStudents() {
         List<Student> students = studentService.getAllStudents();
-
         if (students.isEmpty()) {
             System.out.println("No students found.");
             return;
         }
-
-        System.out.println("--- All Students ---");
-        for (Student student : students) {
-            System.out.println(student);
-        }
+        for (Student student : students) System.out.println(student);
     }
 
     private static void searchStudentById() {
-        int studentId = readInt("Enter Student ID to search: ");
-        Student student = studentService.findStudentById(studentId);
-
-        if (student == null) {
-            System.out.println("Student not found.");
-        } else {
-            System.out.println("Student found: " + student);
-        }
+        int id = readInt("Enter Student ID to search: ");
+        Student student = studentService.findStudentById(id);
+        System.out.println(student == null ? "Student not found." : "Student found: " + student);
     }
 
     private static void deleteStudentById() {
-        int studentId = readInt("Enter Student ID to delete: ");
-
-        if (studentService.deleteStudentById(studentId)) {
-            System.out.println("Student deleted successfully.");
-        } else {
-            System.out.println("Student not found.");
-        }
+        int id = readInt("Enter Student ID to delete: ");
+        System.out.println(studentService.deleteStudentById(id)
+                ? "Student deleted successfully."
+                : "Student not found.");
     }
 
     private static int readInt(String message) {
         while (true) {
             System.out.print(message);
-            String input = scanner.nextLine().trim();
-            try {
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number.");
-            }
+            try { return Integer.parseInt(scanner.nextLine().trim()); }
+            catch (NumberFormatException e) { System.out.println("Please enter a valid number."); }
         }
     }
 
     private static double readDouble(String message) {
         while (true) {
             System.out.print(message);
-            String input = scanner.nextLine().trim();
-            try {
-                return Double.parseDouble(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number.");
-            }
+            try { return Double.parseDouble(scanner.nextLine().trim()); }
+            catch (NumberFormatException e) { System.out.println("Please enter a valid number."); }
         }
     }
 }

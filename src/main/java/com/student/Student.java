@@ -1,10 +1,6 @@
 package com.student;
 
-/**
- * Model class representing a student record.
- */
 public class Student {
-
     private int studentId;
     private String name;
     private String course;
@@ -17,27 +13,14 @@ public class Student {
         this.marks = marks;
     }
 
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public double getMarks() {
-        return marks;
-    }
+    public int getStudentId() { return studentId; }
+    public String getName() { return name; }
+    public String getCourse() { return course; }
+    public double getMarks() { return marks; }
 
     @Override
     public String toString() {
-        return "ID: " + studentId
-                + ", Name: " + name
-                + ", Course: " + course
-                + ", Marks: " + marks;
+        return "ID: " + studentId + ", Name: " + name
+                + ", Course: " + course + ", Marks: " + marks;
     }
 }
