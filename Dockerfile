@@ -1,7 +1,7 @@
-FROM eclipse-temurin:17-jre
+FROM tomcat:10.1-jdk17-temurin
 
-COPY target/student-management-system-1.0.jar /app/student-management-system.jar
+COPY target/student-management-system.war /usr/local/tomcat/webapps/student-management-system.war
 
-WORKDIR /app
+EXPOSE 8080
 
-CMD ["java", "-jar", "student-management-system.jar"]
+CMD ["catalina.sh", "run"]
